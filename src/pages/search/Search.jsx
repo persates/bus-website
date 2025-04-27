@@ -1,10 +1,30 @@
-import React from "react";
+import React, { useState } from "react";
 
 const Search = () => {
+  const [formData, setFormData] = useState({
+    from: "",
+    to: "",
+    date: "",
+    time: "",
+    seat: "",
+  });
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log("Form Data:", formData);
+    // Burada API'ye gönderim yapabilirsin veya başka bir işleme sokabilirsin
+  };
+
   return (
     <div className="w-full lg:px-28 md:px-16 sm:px-7 px-4 my-[8ch]">
-      <div className="w-full bg-neutral-100 rounded-md dark:bg-neutral-900/40 p-8">
+      <form onSubmit={handleSubmit} className="w-full bg-neutral-100 rounded-md dark:bg-neutral-900/40 p-8">
         <div className="grid grid-cols-3 gap-x-10 gap-y-12 items-end">
+
           {/* From Dropdown */}
           <div>
             <label htmlFor="from" className="block mb-2 font-semibold">
@@ -13,6 +33,8 @@ const Search = () => {
             <select
               name="from"
               id="from"
+              value={formData.from}
+              onChange={handleChange}
               className="w-full appearance-none text-neutral-800 dark:text-neutral-100 placeholder:text-neutral-400 dark:placeholder:text-neutral-600 bg-neutral-200/60 dark:bg-neutral-900/60 px-3 h-12 border border-neutral-200 dark:border-neutral-900 rounded-md focus:outline-none focus:bg-neutral-100 dark:focus:bg-neutral-900"
             >
               <option value="">Select Location</option>
@@ -30,6 +52,8 @@ const Search = () => {
             <select
               name="to"
               id="to"
+              value={formData.to}
+              onChange={handleChange}
               className="w-full appearance-none text-neutral-800 dark:text-neutral-100 placeholder:text-neutral-400 dark:placeholder:text-neutral-600 bg-neutral-200/60 dark:bg-neutral-900/60 px-3 h-12 border border-neutral-200 dark:border-neutral-900 rounded-md focus:outline-none focus:bg-neutral-100 dark:focus:bg-neutral-900"
             >
               <option value="">Select Location</option>
@@ -40,7 +64,7 @@ const Search = () => {
           </div>
 
           {/* Date Picker */}
-          <div className="">
+          <div>
             <label htmlFor="date" className="block mb-2 font-semibold">
               Choose Date
             </label>
@@ -48,12 +72,14 @@ const Search = () => {
               type="date"
               id="date"
               name="date"
+              value={formData.date}
+              onChange={handleChange}
               className="w-full appearance-none text-neutral-800 dark:text-neutral-100 placeholder:text-neutral-400 dark:placeholder:text-neutral-600 bg-neutral-200/60 dark:bg-neutral-900/60 px-3 h-12 border border-neutral-200 dark:border-neutral-900 rounded-md focus:outline-none focus:bg-neutral-100 dark:focus:bg-neutral-900"
             />
           </div>
 
-
-          <div className="">
+          {/* Time Picker */}
+          <div>
             <label htmlFor="time" className="block mb-2 font-semibold">
               Choose Time
             </label>
@@ -61,30 +87,40 @@ const Search = () => {
               type="time"
               id="time"
               name="time"
+              value={formData.time}
+              onChange={handleChange}
               className="w-full appearance-none text-neutral-800 dark:text-neutral-100 placeholder:text-neutral-400 dark:placeholder:text-neutral-600 bg-neutral-200/60 dark:bg-neutral-900/60 px-3 h-12 border border-neutral-200 dark:border-neutral-900 rounded-md focus:outline-none focus:bg-neutral-100 dark:focus:bg-neutral-900"
             />
           </div>
 
-          <div className="">
+          {/* Seat Input */}
+          <div>
             <label htmlFor="seat" className="block mb-2 font-semibold">
-              Total seat
+              Total Seat
             </label>
             <input
-              type="seat"
+              type="number"
               id="seat"
-              placeholder="Enter seat"
               name="seat"
+              placeholder="Enter seat"
+              value={formData.seat}
+              onChange={handleChange}
               className="w-full appearance-none text-neutral-800 dark:text-neutral-100 placeholder:text-neutral-400 dark:placeholder:text-neutral-600 bg-neutral-200/60 dark:bg-neutral-900/60 px-3 h-12 border border-neutral-200 dark:border-neutral-900 rounded-md focus:outline-none focus:bg-neutral-100 dark:focus:bg-neutral-900"
             />
           </div>
 
-          <div className="">
-                <button className="w-full px-4 h-12 bg-violet-600 text-neutral-50 text-base font-normal rounded-md">
-                    Check Abailibilty
-                </button> 
-         </div>
+          {/* Submit Button */}
+          <div>
+            <button
+              type="submit"
+              className="w-full px-4 h-12 bg-violet-600 text-neutral-50 text-base font-normal rounded-md hover:bg-violet-700 transition"
+            >
+              Check Availability
+            </button>
+          </div>
+
         </div>
-      </div>
+      </form>
     </div>
   );
 };
