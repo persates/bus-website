@@ -100,7 +100,7 @@ const BusSeatLayout = () => {
           <div className="flex items-center gap-x-2">
             <RiMoneyDollarBoxFill  className="text-lg  text-neutral-500 " />
             <p className="text-neutral-900 dark:text-neutral-200 text-sm font-normal">
-                Dolar $20
+                 $20
             </p>
           </div>
         </div>

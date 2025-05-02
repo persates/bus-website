@@ -5,6 +5,7 @@ import Footer from "./components/footer/Footer";
 import HomeContainer from "./pages/home_container/HomeContainer";
 import Bus from "./pages/bus/Bus";
 import Detail from "./pages/bus/Detail";
+import Checkout from "./pages/checkout/Checkout";
 
 function App() {
   return (
@@ -15,6 +16,8 @@ function App() {
           <Route path="/" element={<HomeContainer />} />
           <Route path="/bus" element={<Bus />} />
           <Route path="/bus/bus-details" element={<Detail />} />
+          <Route path="/bus/bus-details/checkout" element={<Checkout/>} />
+         
         </Routes>
         <Footer />
       </div>
